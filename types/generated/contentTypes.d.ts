@@ -782,6 +782,11 @@ export interface ApiBrandBrand extends Schema.CollectionType {
   attributes: {
     Name: Attribute.String & Attribute.Required & Attribute.Unique;
     Description: Attribute.Blocks;
+    categories: Attribute.Relation<
+      'api::brand.brand',
+      'manyToMany',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -806,12 +811,23 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     singularName: 'category';
     pluralName: 'categories';
     displayName: 'Category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     Name: Attribute.String & Attribute.Required & Attribute.Unique;
+    product: Attribute.Relation<
+      'api::category.category',
+      'oneToOne',
+      'api::product.product'
+    >;
+    brands: Attribute.Relation<
+      'api::category.category',
+      'manyToMany',
+      'api::brand.brand'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -846,6 +862,11 @@ export interface ApiProductProduct extends Schema.CollectionType {
     Name: Attribute.String & Attribute.Required;
     Description: Attribute.Blocks & Attribute.Required;
     Image: Attribute.Media;
+    category: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::category.category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
