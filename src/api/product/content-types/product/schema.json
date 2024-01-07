@@ -12,10 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productID": {
-      "type": "uid",
-      "required": true
-    },
     "Name": {
       "type": "string",
       "required": true
@@ -37,6 +33,11 @@
       "relation": "oneToOne",
       "target": "api::category.category",
       "inversedBy": "product"
+    },
+    "ProductID": {
+      "type": "biginteger",
+      "required": true,
+      "unique": true
     }
   }
 }

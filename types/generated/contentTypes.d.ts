@@ -858,7 +858,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    productID: Attribute.UID & Attribute.Required;
     Name: Attribute.String & Attribute.Required;
     Description: Attribute.Blocks & Attribute.Required;
     Image: Attribute.Media;
@@ -867,6 +866,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
       'oneToOne',
       'api::category.category'
     >;
+    ProductID: Attribute.BigInteger & Attribute.Required & Attribute.Unique;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
